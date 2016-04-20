@@ -18,6 +18,7 @@ public abstract class Person {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	private int id;
+	private String login;
 	private String name;
 	private String surname;
 	private String mail;
@@ -61,5 +62,13 @@ public abstract class Person {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 }
