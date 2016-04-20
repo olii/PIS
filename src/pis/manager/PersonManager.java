@@ -3,7 +3,6 @@ package pis.manager;
 import java.util.List;
 
 import javax.ejb.Stateless;
-
 import pis.data.Person;
 
 @Stateless

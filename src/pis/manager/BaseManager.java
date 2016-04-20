@@ -1,9 +1,11 @@
 package pis.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
@@ -26,15 +28,25 @@ public class BaseManager<T> {
 	
 	@SuppressWarnings("unchecked")
 	public List<T> find(String tableName, String field, Object value) {
-		return em.createQuery("SELECT a FROM " + tableName + " a WHERE a." + field + " = :val")
-				.setParameter("val", value)
-				.getResultList();
+		try {
+			return em.createQuery("SELECT a FROM " + tableName + " a WHERE a." + field + " = :val")
+					.setParameter("val", value)
+					.getResultList();
+		}
+		catch (NoResultException ex) {
+			return new ArrayList<T>();
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
 	public T findOne(String tableName, String field, Object value) {
-		return (T)em.createQuery("SELECT a FROM " + tableName + " a WHERE a." + field + " = :val")
-				.setParameter("val", value)
-				.getSingleResult();
+		try {
+			return (T)em.createQuery("SELECT a FROM " + tableName + " a WHERE a." + field + " = :val")
+					.setParameter("val", value)
+					.getSingleResult();
+		}
+		catch (NoResultException ex) {
+			return null;
+		}
 	}
 }

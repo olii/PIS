@@ -32,7 +32,7 @@ public class LoginBean {
 		this.password = password;
 	}
 
-	public String login() {
+	public String performLogin() {
 		if (loggedIn) {
 			return "error";
 		}
@@ -46,7 +46,7 @@ public class LoginBean {
 		return "ok";
 	}
 	
-	public String logout() {
+	public String performLogout() {
 		if (!loggedIn) {
 			return "error";
 		}

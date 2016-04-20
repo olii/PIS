@@ -9,5 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Login: "/>
+			<h:inputText value="#{loginBean.login}"/>
+			<h:outputLabel value="Password: "/>
+			<h:inputSecret value="#{loginBean.password}"/>
+			<h:commandButton action="#{loginBean.performLogin}" value="Login"/>
+		</h:panelGrid>
+	</h:form>
 </body>
 </html>
