@@ -1,4 +1,4 @@
-package pis;
+package pis.data;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;

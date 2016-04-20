@@ -1,4 +1,4 @@
-package pis;
+package pis.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

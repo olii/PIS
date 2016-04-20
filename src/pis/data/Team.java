@@ -1,4 +1,4 @@
-package pis;
+package pis.data;
 
 import java.util.ArrayList;
 
