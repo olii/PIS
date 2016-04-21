@@ -40,7 +40,7 @@ public class AuthBean {
 		if (loggedIn) {
 			return "error";
 		}
-		
+
 		Person person = personMgr.findByLogin(this.login);
 		if (person == null || !this.password.equals(person.getPassword())) {
 			return "error";
