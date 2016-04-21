@@ -32,6 +32,10 @@ public class AuthBean {
 		this.password = password;
 	}
 
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
 	public String performLogin() {
 		if (loggedIn) {
 			return "error";
