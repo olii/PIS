@@ -4,19 +4,19 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Insert title here</title>
-</head>
-<body>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Login: "/>
-			<h:inputText value="#{authBean.login}"/>
-			<h:outputLabel value="Password: "/>
-			<h:inputSecret value="#{authBean.password}"/>
-			<h:commandButton action="#{authBean.performLogin}" value="Login"/>
-		</h:panelGrid>
-	</h:form>
-</body>
+	
+<ui:composition template="template.xhtml">
+	<ui:define name="title">Login</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Login: "/>
+				<h:inputText value="#{authBean.login}"/>
+				<h:outputLabel value="Password: "/>
+				<h:inputSecret value="#{authBean.password}"/>
+				<h:commandButton action="#{authBean.performLogin}" value="Login"/>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
