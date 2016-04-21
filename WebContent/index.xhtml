@@ -12,10 +12,10 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Login: "/>
-			<h:inputText value="#{loginBean.login}"/>
+			<h:inputText value="#{authBean.login}"/>
 			<h:outputLabel value="Password: "/>
-			<h:inputSecret value="#{loginBean.password}"/>
-			<h:commandButton action="#{loginBean.performLogin}" value="Login"/>
+			<h:inputSecret value="#{authBean.password}"/>
+			<h:commandButton action="#{authBean.performLogin}" value="Login"/>
 		</h:panelGrid>
 	</h:form>
 </body>

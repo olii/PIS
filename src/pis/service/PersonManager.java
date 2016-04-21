@@ -1,4 +1,4 @@
-package pis.manager;
+package pis.service;
 
 import java.util.List;
 

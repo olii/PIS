@@ -5,11 +5,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import pis.data.Person;
-import pis.manager.PersonManager;
+import pis.service.PersonManager;
 
 @ManagedBean
 @SessionScoped
-public class LoginBean {
+public class AuthBean {
 	private boolean loggedIn;
 	private String login;
 	private String password;
