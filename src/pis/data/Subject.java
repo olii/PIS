@@ -3,11 +3,13 @@ package pis.data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.ArrayList;
+import java.util.List;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.CascadeType.ALL;
 
@@ -19,7 +21,13 @@ public class Subject {
 	private int id;
 	private String name;	
 	@OneToMany(fetch = EAGER, cascade = ALL, mappedBy = "subject", orphanRemoval = true)
-	private ArrayList<Project> projects;
+	private List<Project> projects;
+	@ManyToMany(fetch = EAGER, cascade = ALL)
+	@JoinTable(name = "subject_teacher")
+	private List<Teacher> teachers;
+	@ManyToMany(fetch = EAGER, cascade = ALL)
+	@JoinTable(name = "subject_student")
+	private List<Student> students;
 
 	public int getId() {
 		return id;
@@ -37,11 +45,27 @@ public class Subject {
 		this.name = name;
 	}
 	
-	public ArrayList<Project> getProjects() {
+	public List<Project> getProjects() {
 		return this.projects;
 	}
 	
-	public void setProjects(ArrayList<Project> projects) {
+	public void setProjects(List<Project> projects) {
 		this.projects = projects;
+	}
+	
+	public List<Teacher> getTeachers() {
+		return this.teachers;
+	}
+	
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
+	public List<Student> getStudents() {
+		return this.students;
+	}
+	
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 }

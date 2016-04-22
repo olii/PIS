@@ -1,6 +1,6 @@
 package pis.data;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +24,8 @@ public class Team {
 	@ManyToOne(fetch = EAGER)
 	private Project project;
 	@ManyToMany(fetch = EAGER, cascade = ALL)
-	@JoinTable(name = "person_team")
-	private ArrayList<Person> members;
+	@JoinTable(name = "team_person")
+	private List<Person> members;
 
 	public int getId() {
 		return id;
@@ -43,11 +43,11 @@ public class Team {
 		this.name = name;
 	}
 
-	public ArrayList<Person> getMembers() {
+	public List<Person> getMembers() {
 		return members;
 	}
 	
-	public void setMembers(ArrayList<Person> members) {
+	public void setMembers(List<Person> members) {
 		this.members = members;
 	}
 	

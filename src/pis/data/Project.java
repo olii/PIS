@@ -12,7 +12,7 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.FetchType.EAGER;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 @Entity
@@ -30,7 +30,7 @@ public class Project {
 	@Temporal(TemporalType.DATE)
 	private Date deadline;
 	@OneToMany(cascade = ALL, fetch = EAGER, mappedBy = "project", orphanRemoval = true)
-	private ArrayList<Team> teams;
+	private List<Team> teams;
 	@ManyToOne(fetch = EAGER)
 	private Subject subject;
 
@@ -74,11 +74,11 @@ public class Project {
 		this.capacity = capacity;
 	}
 
-	public ArrayList<Team> getTeams() {
+	public List<Team> getTeams() {
 		return teams;
 	}
 
-	public void setTeams(ArrayList<Team> teams) {
+	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
 
