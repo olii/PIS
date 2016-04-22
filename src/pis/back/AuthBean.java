@@ -7,6 +7,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import pis.data.Person;
+import pis.data.Student;
+import pis.data.Teacher;
 import pis.service.PersonManager;
 
 @ManagedBean
@@ -41,6 +43,14 @@ public class AuthBean {
 
 	public Person getAccount() {
 		return account;
+	}
+	
+	public boolean isStudent() {
+		return account instanceof Student;
+	}
+	
+	public boolean isTeacher() {
+		return account instanceof Teacher;
 	}
 
 	public String performLogin() {
