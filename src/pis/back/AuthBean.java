@@ -1,8 +1,10 @@
 package pis.back;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import pis.data.Person;
 import pis.service.PersonManager;
@@ -43,6 +45,8 @@ public class AuthBean {
 
 		Person person = personMgr.findByLogin(this.login);
 		if (person == null || !this.password.equals(person.getPassword())) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username or password", ""));
 			return "error";
 		}
 		
