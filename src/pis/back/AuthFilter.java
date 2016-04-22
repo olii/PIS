@@ -26,13 +26,13 @@ public class AuthFilter implements Filter {
 		HttpSession session = httpReq.getSession();
 		AuthBean authBean = (AuthBean)session.getAttribute("authBean");
  
-		boolean noRedirect = httpReq.getRequestURI().startsWith("/pis/projects/login.xhtml");
+		boolean noRedirect = httpReq.getRequestURI().contains("/pis/login.xhtml");
 		if (noRedirect || (authBean != null && authBean.isLoggedIn())) {
 			chain.doFilter(req, resp);
 			return;
 		}
 
-		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + "/projects/login.xhtml");
+		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + "/login.xhtml");
 	}
 
 	@Override
