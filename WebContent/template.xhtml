@@ -14,7 +14,13 @@
 		<h2>PIS Project</h2>
 	</div>
 	<div id="menu">
-		Menu comes here
+		<h:form>
+			<p:menubar rendered="#{authBean.loggedIn}">
+			<f:facet name="options">
+				<p:commandButton action="#{authBean.performLogout}" value="Logout" icon="ui-icon-power"/>
+			</f:facet>
+			</p:menubar>
+		</h:form>
 	</div>
 	<div id="content">
 		<h2><ui:insert name="title"/></h2>

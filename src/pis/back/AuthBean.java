@@ -51,15 +51,15 @@ public class AuthBean {
 		}
 		
 		loggedIn = true;
-		return "ok";
+		return "login";
 	}
 	
 	public String performLogout() {
 		if (!loggedIn) {
 			return "error";
 		}
-		
+
 		loggedIn = false;
-		return "ok";
+		return "logout";
 	}
 }
