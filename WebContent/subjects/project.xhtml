@@ -9,7 +9,15 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">#{projectBean.getName(param['id'])}</ui:define>
 	<ui:define name="content">
-		Project detail
+		<h3>Teams</h3>
+		<p:dataTable var="team" value="#{projectBean.getProject(param['id']).teams}">
+			<p:column headerText="Name">
+				<h:outputText value="#{team.name}"/>
+			</p:column>
+			<p:column headerText="Capacity">
+				<h:outputText value="#{team.capacity}"/>
+			</p:column>
+		</p:dataTable>
 	</ui:define>
 </ui:composition>
 </html>
