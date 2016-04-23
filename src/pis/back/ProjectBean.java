@@ -4,7 +4,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import pis.data.Person;
 import pis.data.Project;
+import pis.data.Team;
 import pis.service.ProjectManager;
 
 @ManagedBean
@@ -24,5 +26,13 @@ public class ProjectBean {
 		}
 		
 		return project.getSubject().getName() + " - " + project.getName(); 
+	}
+	
+	public boolean teamContainsMember(Team team, Person person) {
+		for (Person member : team.getMembers()) {
+			if (member.getId() == person.getId())
+				return true;
+		}
+		return false;
 	}
 }

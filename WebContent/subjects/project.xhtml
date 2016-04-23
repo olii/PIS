@@ -13,6 +13,9 @@
 		<p:dataTable var="team" value="#{projectBean.getProject(param['id']).teams}">
 			<p:column headerText="Name">
 				<a href="team.xhtml?id=#{team.id}"><h:outputText value="#{team.name}"/></a>
+				<p:outputLabel rendered="#{projectBean.teamContainsMember(team, authBean.account)}">
+					<br/><i>Registered</i>
+				</p:outputLabel>
 			</p:column>
 			<p:column headerText="Members">
 				<h:outputText value="#{team.members.size()}"/>
