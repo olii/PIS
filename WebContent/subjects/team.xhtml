@@ -7,18 +7,14 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template.xhtml">
-	<ui:define name="title">#{projectBean.getName(param['id'])}</ui:define>
+	<ui:define name="title">#{teamBean.getName(param['id'])}</ui:define>
 	<ui:define name="content">
-		<h3>Teams</h3>
-		<p:dataTable var="team" value="#{projectBean.getProject(param['id']).teams}">
+		<p:dataTable var="member" value="#{teamBean.getTeam(param['id']).members}">
+			<p:column headerText="#">
+				<h:outputText value="#{rowIndex + 1}"/>
+			</p:column>
 			<p:column headerText="Name">
-				<a href="team.xhtml?id=#{team.id}"><h:outputText value="#{team.name}"/></a>
-			</p:column>
-			<p:column headerText="Members">
-				<h:outputText value="#{team.members.size()}"/>
-			</p:column>
-			<p:column headerText="Capacity">
-				<h:outputText value="#{team.capacity}"/>
+				<h:outputText value="#{member.name} #{member.surname}"/>
 			</p:column>
 		</p:dataTable>
 	</ui:define>
