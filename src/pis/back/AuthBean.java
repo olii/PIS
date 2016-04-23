@@ -75,6 +75,8 @@ public class AuthBean {
 			return "error";
 		}
 
+		login = "";
+		password = "";
 		account = null;
 		loggedIn = false;
 		return "logout";
