@@ -23,6 +23,7 @@ public class Project {
 	private int id;
 	private String name;
 	private int capacity;
+	private int teamSize;
 	@Temporal(TemporalType.DATE)
 	private Date regBegin;
 	@Temporal(TemporalType.DATE)
@@ -72,6 +73,14 @@ public class Project {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
+	}
+
+	public int getTeamSize() {
+		return teamSize;
+	}
+
+	public void setTeamSize(int teamCapacity) {
+		this.teamSize = teamCapacity;
 	}
 
 	public List<Team> getTeams() {
