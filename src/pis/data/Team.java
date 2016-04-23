@@ -24,8 +24,8 @@ public class Team {
 	@ManyToOne(fetch = EAGER)
 	private Project project;
 	@ManyToMany(fetch = EAGER, cascade = ALL)
-	@JoinTable(name = "team_person")
-	private List<Person> members;
+	@JoinTable(name = "team_student")
+	private List<Student> members;
 
 	public int getId() {
 		return id;
@@ -43,11 +43,11 @@ public class Team {
 		this.name = name;
 	}
 
-	public List<Person> getMembers() {
+	public List<Student> getMembers() {
 		return members;
 	}
 	
-	public void setMembers(List<Person> members) {
+	public void setMembers(List<Student> members) {
 		this.members = members;
 	}
 	

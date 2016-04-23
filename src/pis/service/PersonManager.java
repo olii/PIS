@@ -6,14 +6,15 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import pis.data.Person;
+import pis.data.Student;
 
 @Stateless
 public class PersonManager {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public void save(Person person) {
-		em.merge(person);
+	public void save(Student student) {
+		em.merge(student);
 	}
 
 	public Person findByLogin(String login) {

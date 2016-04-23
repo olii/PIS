@@ -7,9 +7,9 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template.xhtml">
-	<ui:define name="title">#{teamBean.getName(param['id'])}</ui:define>
+	<ui:define name="title">#{teamBean.getTitle()}</ui:define>
 	<ui:define name="content">
-		<p:dataTable var="member" value="#{teamBean.getTeam(param['id']).members}">
+		<p:dataTable var="member" value="#{teamBean.members}">
 			<p:column headerText="#">
 				<h:outputText value="#{rowIndex + 1}"/>
 			</p:column>

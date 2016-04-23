@@ -7,10 +7,10 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template.xhtml">
-	<ui:define name="title">#{subjectBean.getSubject(param['id']).name}</ui:define>
+	<ui:define name="title">#{subjectBean.getTitle()}</ui:define>
 	<ui:define name="content">
 		<h3>Projects</h3>
-		<p:dataTable var="project" value="#{subjectBean.getSubject(param['id']).projects}">
+		<p:dataTable var="project" value="#{subjectBean.projects}">
 			<p:column headerText="Name">
 				<a href="project.xhtml?id=#{project.id}"><h:outputText value="#{project.name}"/></a>
 			</p:column>

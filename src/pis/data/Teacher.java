@@ -5,11 +5,12 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 @DiscriminatorValue("TEACHER")
 public class Teacher extends Person {
-	@ManyToMany(mappedBy = "teachers")
+	@ManyToMany(mappedBy = "teachers", fetch = EAGER)
 	private List<Subject> teachedSubjects;
 
 	public List<Subject> getTeachedSubjects() {

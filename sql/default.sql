@@ -1,6 +1,6 @@
 DELETE FROM subject_student;
 DELETE FROM subject_teacher;
-DELETE FROM team_person;
+DELETE FROM team_student;
 DELETE FROM team;
 DELETE FROM project;
 DELETE FROM person;
@@ -25,8 +25,9 @@ INSERT INTO project (name, subject_id, teamsize, capacity, regBegin, regEnd, dea
 ("Producer-consumer problem", 3, 1, 150, '2016-05-20 20:00:00', '2016-05-21 20:00:00', '2016-08-01 21:00:00');
 INSERT INTO team (name, capacity, project_id) VALUES
 ("Team Forsen", 1, 1),
-("Team Reckful", 1, 2);
-INSERT INTO team_person (team_id, members_id) VALUES
+("Team Reckful", 1, 2),
+("Team Mitch", 1, 4);
+INSERT INTO team_student (teams_id, members_id) VALUES
 (1, 2),
 (2, 2);
 INSERT INTO subject_student (enrolled_id, students_id) VALUES
