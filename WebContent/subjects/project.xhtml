@@ -14,6 +14,9 @@
 			<p:column headerText="Name">
 				<h:outputText value="#{team.name}"/>
 			</p:column>
+			<p:column headerText="Members">
+				<h:outputText value="#{team.members.size()}"/>
+			</p:column>
 			<p:column headerText="Capacity">
 				<h:outputText value="#{team.capacity}"/>
 			</p:column>

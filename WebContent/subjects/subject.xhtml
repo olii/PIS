@@ -14,11 +14,14 @@
 			<p:column headerText="Name">
 				<a href="project.xhtml?id=#{project.id}"><h:outputText value="#{project.name}"/></a>
 			</p:column>
-			<p:column headerText="Team Size">
-				<h:outputText value="#{project.teamSize}"/>
+			<p:column headerText="Teams">
+				<h:outputText value="#{project.teams.size()}"/>
 			</p:column>
 			<p:column headerText="Max Teams">
 				<h:outputText value="#{project.capacity}"/>
+			</p:column>
+			<p:column headerText="Team Size">
+				<h:outputText value="#{project.teamSize}"/>
 			</p:column>
 		</p:dataTable>
 	</ui:define>
