@@ -12,7 +12,7 @@
 		<h3>Teams</h3>
 		<p:messages autoUpdate="true"/>
 		<h:form>
-			<p:commandButton value="New Team" icon="ui-icon-plus"
+			<p:commandButton value="New Team" icon="fa fa-fw fa-plus"
 				action="#{projectBean.newTeam(authBean.account)}" rendered="#{authBean.account.student}"/>
 		</h:form>
 		<p:dataTable var="team" value="#{projectBean.teams}" id="team-list">
@@ -29,15 +29,15 @@
 				<h:outputText value="#{team.capacity}"/>
 			</p:column>
 			<p:column headerText="Action" rendered="#{authBean.account.student}">
-				<p:commandButton id="button-leave" update=":team-list" value="Leave Team" icon="ui-icon-minus"
+				<p:commandButton id="button-leave" update=":team-list" value="Leave Team" icon="fa fa-fw fa-minus"
 					rendered="#{projectBean.teamContainsMember(team, authBean.account)}"
 					actionListener="#{projectBean.leaveTeam(team.id, authBean.account)}"/>
-				<p:commandButton id="button-join" update=":team-list" value="Join Team" icon="ui-icon-plus"
+				<p:commandButton id="button-join" update=":team-list" value="Join Team" icon="fa fa-fw fa-plus"
 					rendered="#{projectBean.teamDoesNotContainMember(team, authBean.account)}"
 					actionListener="#{projectBean.joinTeam(team.id, authBean.account)}"/>
 			</p:column>
 			<p:column headerText="Action" rendered="#{projectBean.canManage(authBean.account)}">
-				<p:commandButton id="button-delete" update=":team-list" value="Remove Team" icon="ui-icon-close"
+				<p:commandButton id="button-delete" update=":team-list" value="Remove Team" icon="fa fa-fw fa-close"
 					actionListener="#{projectBean.removeTeam(team.id)}"/>
 			</p:column>
 		</p:dataTable>

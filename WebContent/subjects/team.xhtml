@@ -17,7 +17,7 @@
 				<h:outputText value="#{member.name} #{member.surname}"/>
 			</p:column>
 			<p:column headerText="Action" rendered="#{teamBean.canManage(authBean.account)}">
-				<p:commandButton value="Remove Member" icon="ui-icon-close" update=":member-list"
+				<p:commandButton value="Remove Member" icon="fa fa-fw fa-close" update=":member-list"
 					actionListener="#{teamBean.removeMember(member)}"/>
 			</p:column>
 		</p:dataTable>
