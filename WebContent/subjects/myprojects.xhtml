@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="title">My Projects</ui:define>
+	<ui:define name="content">
+		<p:dataTable var="project" value="#{myProjectsBean.projects}">
+			<p:column headerText="Subject">
+				<a href="subject.xhtml?id=#{project.subject.id}">
+					<h:outputText value="#{project.subject.name}"/>
+				</a>
+			</p:column>
+			<p:column headerText="Project">
+				<a href="project.xhtml?id=#{project.id}">
+					<h:outputText value="#{project.name}"/>
+				</a>
+			</p:column>
+			<p:column headerText="Team">
+				<h:outputLabel rendered="#{myProjectsBean.hasTeam(project, authBean.account)}">
+					<a href="team.xhtml?id=#{myProjectsBean.getTeamId(project, authBean.account)}">
+						<h:outputText value="#{myProjectsBean.getTeamName(project, authBean.account)}"/>
+					</a>
+				</h:outputLabel>
+				<h:outputLabel rendered="#{!(myProjectsBean.hasTeam(project, authBean.account))}">
+					<i>Not Registered</i>
+				</h:outputLabel>
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>
+</html>

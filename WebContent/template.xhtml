@@ -18,6 +18,8 @@
 			<p:menubar rendered="#{authBean.loggedIn}">
 				<p:menuitem value="Home" url="/index.xhtml" icon="ui-icon-home"/>
 				<p:menuitem value="Subjects" url="/subjects/" icon="ui-icon-bullet"/>
+				<p:menuitem value="My Projects" url="/subjects/myprojects.xhtml" icon="ui-icon-bullet"
+					rendered="#{authBean.account.student}"/>
 				<f:facet name="options">
 					Logged in as <b>#{authBean.account.name} #{authBean.account.surname} (#{authBean.account.login})</b>
 					<p:commandButton action="#{authBean.performLogout}" value="Logout" icon="ui-icon-power"/>
