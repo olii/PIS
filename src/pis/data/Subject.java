@@ -22,10 +22,10 @@ public class Subject {
 	private String name;	
 	@OneToMany(fetch = EAGER, cascade = ALL, mappedBy = "subject", orphanRemoval = true)
 	private List<Project> projects;
-	@ManyToMany(fetch = EAGER, cascade = ALL)
+	@ManyToMany(fetch = EAGER)
 	@JoinTable(name = "subject_teacher")
 	private List<Teacher> teachers;
-	@ManyToMany(fetch = EAGER, cascade = ALL)
+	@ManyToMany(fetch = EAGER)
 	@JoinTable(name = "subject_student")
 	private List<Student> students;
 

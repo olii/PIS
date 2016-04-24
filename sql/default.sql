@@ -12,6 +12,7 @@ ALTER TABLE project AUTO_INCREMENT = 1;
 ALTER TABLE team AUTO_INCREMENT = 1;
 
 INSERT INTO person (login, password, name, surname, mail, acc_type) VALUES
+("admin", "admin", "Default", "Admin", "admin@uni.edu", "ADMIN"),
 ("teacher", "teacher", "Default", "Teacher", "teacher@uni.edu", "TEACHER"),
 ("student", "student", "Default", "Student", "student@uni.edu", "STUDENT");
 INSERT INTO subject (name) VALUES
@@ -28,13 +29,13 @@ INSERT INTO team (name, capacity, project_id) VALUES
 ("Team Reckful", 1, 2),
 ("Team Mitch", 1, 4);
 INSERT INTO team_student (teams_id, members_id) VALUES
-(1, 2),
-(2, 2);
+(1, 3),
+(2, 3);
 INSERT INTO subject_student (enrolled_id, students_id) VALUES
+(1, 3),
+(2, 3),
+(3, 3);
+INSERT INTO subject_teacher (teachedsubjects_id, teachers_id) VALUES
 (1, 2),
 (2, 2),
 (3, 2);
-INSERT INTO subject_teacher (teachedsubjects_id, teachers_id) VALUES
-(1, 1),
-(2, 1),
-(3, 1);

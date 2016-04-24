@@ -71,4 +71,16 @@ public abstract class Person {
 	public void setLogin(String login) {
 		this.login = login;
 	}
+	
+	public boolean isStudent() {
+		return false;
+	}
+	
+	public boolean isTeacher() {
+		return false;
+	}
+	
+	public boolean isAdmin() {
+		return false;
+	}
 }

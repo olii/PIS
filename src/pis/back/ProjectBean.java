@@ -13,6 +13,8 @@ import javax.faces.context.FacesContext;
 import pis.data.Person;
 import pis.data.Project;
 import pis.data.Student;
+import pis.data.Subject;
+import pis.data.Teacher;
 import pis.data.Team;
 import pis.service.PersonManager;
 import pis.service.ProjectManager;
@@ -62,6 +64,7 @@ public class ProjectBean {
 
 		this.project = project;
 		this.teams = project.getTeams();
+		System.out.println(this.teams.size());
 	}
 	
 	public String getTitle() {
@@ -128,5 +131,42 @@ public class ProjectBean {
 		}
 		
 		return false;
+	}
+	
+	public boolean canManage(Person account) {
+		if (account.isAdmin()) {
+			return true;
+		}
+		
+		if (account.isTeacher()) {
+			Teacher teacher = (Teacher)account;
+			for (Subject subject : teacher.getTeachedSubjects()) {
+				if (subject.getId() == project.getSubject().getId()) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public void removeTeam(int teamId) {
+		Team team = teamMgr.findById(teamId);
+		List<Person> accounts = personMgr.findAll();
+		
+		for (Person account : accounts) {
+			if (!account.isStudent())
+				continue;
+			
+			Student student = (Student)account;
+			student.getTeams().removeIf(t -> t.getId() == team.getId());
+			personMgr.save(student);
+		}
+		
+		project.getTeams().removeIf(t -> t.getId() == team.getId());
+		projectMgr.save(project);
+		teamMgr.remove(team);
+		
+		init(project.getId());
 	}
 }

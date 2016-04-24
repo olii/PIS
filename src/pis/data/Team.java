@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.CascadeType.ALL;
 import javax.persistence.JoinTable;
 
 @Entity
@@ -24,7 +23,7 @@ public class Team {
 	private int capacity;
 	@ManyToOne(fetch = EAGER)
 	private Project project;
-	@ManyToMany(fetch = EAGER, cascade = ALL)
+	@ManyToMany(fetch = EAGER)
 	@JoinTable(name = "team_student")
 	private List<Student> members;
 	

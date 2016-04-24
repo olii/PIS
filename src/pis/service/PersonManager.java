@@ -1,5 +1,7 @@
 package pis.service;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -26,5 +28,10 @@ public class PersonManager {
 		catch (NoResultException ex) {
 			return null;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Person> findAll() {
+		return (List<Person>)em.createQuery("SELECT p FROM Person p").getResultList();
 	}
 }

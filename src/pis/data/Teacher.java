@@ -20,4 +20,9 @@ public class Teacher extends Person {
 	public void setEnrolled(List<Subject> teachedSubjects) {
 		this.teachedSubjects = teachedSubjects;
 	}
+	
+	@Override
+	public boolean isTeacher() {
+		return true;
+	}
 }

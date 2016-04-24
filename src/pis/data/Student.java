@@ -30,4 +30,9 @@ public class Student extends Person {
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
+	
+	@Override
+	public boolean isStudent() {
+		return true;
+	}
 }

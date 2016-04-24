@@ -16,6 +16,10 @@ public class TeamManager {
 		return em.merge(team);
 	}
 	
+	public void remove(Team team) {
+		em.remove(em.merge(team));
+	}
+	
 	public Team findById(int id) {
 		try {
 			return (Team)em.createQuery("SELECT t FROM Team t WHERE t.id = :id")

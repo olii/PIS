@@ -9,12 +9,16 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">#{teamBean.getTitle()}</ui:define>
 	<ui:define name="content">
-		<p:dataTable var="member" value="#{teamBean.members}">
+		<p:dataTable id="member-list" var="member" value="#{teamBean.members}">
 			<p:column headerText="#">
 				<h:outputText value="#{rowIndex + 1}"/>
 			</p:column>
 			<p:column headerText="Name">
 				<h:outputText value="#{member.name} #{member.surname}"/>
+			</p:column>
+			<p:column headerText="Action" rendered="#{teamBean.canManage(authBean.account)}">
+				<p:commandButton value="Remove Member" icon="ui-icon-close" update=":member-list"
+					actionListener="#{teamBean.removeMember(member)}"/>
 			</p:column>
 		</p:dataTable>
 	</ui:define>
