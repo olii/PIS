@@ -1,5 +1,6 @@
 package pis.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -26,6 +27,10 @@ public class Team {
 	@ManyToMany(fetch = EAGER, cascade = ALL)
 	@JoinTable(name = "team_student")
 	private List<Student> members;
+	
+	public Team() {
+		members = new ArrayList<Student>();
+	}
 
 	public int getId() {
 		return id;

@@ -17,7 +17,6 @@ public class AuthBean {
 	private boolean loggedIn;
 	private String login;
 	private String password;
-	private Person account;
 	@EJB
 	private PersonManager personMgr;
 
@@ -42,15 +41,15 @@ public class AuthBean {
 	}
 
 	public Person getAccount() {
-		return account;
+		return personMgr.findByLogin(login);
 	}
 	
 	public boolean isStudent() {
-		return account instanceof Student;
+		return getAccount() instanceof Student;
 	}
 	
 	public boolean isTeacher() {
-		return account instanceof Teacher;
+		return getAccount() instanceof Teacher;
 	}
 
 	public String performLogin() {
@@ -64,8 +63,7 @@ public class AuthBean {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username or password", ""));
 			return "error";
 		}
-		
-		account = person;
+
 		loggedIn = true;
 		return "login";
 	}
@@ -77,7 +75,6 @@ public class AuthBean {
 
 		login = "";
 		password = "";
-		account = null;
 		loggedIn = false;
 		return "logout";
 	}

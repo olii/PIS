@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -91,6 +92,12 @@ public class ProjectBean {
 	}
 	
 	public void joinTeam(int teamId, Student account) {
+		if (alreadyHasTeam(account)) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "You already have a team in this project", ""));
+			return;
+		}
+		
 		Team team = teamMgr.findById(teamId);
 		team.getMembers().add(account);
 		account.getTeams().add(team);
@@ -99,5 +106,27 @@ public class ProjectBean {
 		personMgr.save(account);
 
 		init(project.getId());
+	}
+	
+	public String newTeam(Person account) {
+		if (alreadyHasTeam(account)) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "You already have a team in this project", ""));
+			return "error";
+		}
+
+		return "/subjects/newteam.xhtml?project=" + project.getId() + "&faces-redirect=true";
+	}
+	
+	public boolean alreadyHasTeam(Person account) {
+		if (!(account instanceof Student))
+			return false;
+		
+		for (Team team : ((Student)account).getTeams()) {
+			if (team.getProject().getId() == project.getId())
+				return true;
+		}
+		
+		return false;
 	}
 }
