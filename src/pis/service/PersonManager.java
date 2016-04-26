@@ -29,6 +29,17 @@ public class PersonManager {
 		}
 	}
 	
+	public Person findById(int id) {
+		try {
+			return (Person)em.createQuery("SELECT p FROM Person p WHERE p.id = :id")
+					.setParameter("id", id)
+					.getSingleResult();
+		}
+		catch (NoResultException ex) {
+			return null;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Person> findAll() {
 		return (List<Person>)em.createQuery("SELECT p FROM Person p").getResultList();
