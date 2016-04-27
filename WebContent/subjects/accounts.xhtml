@@ -9,11 +9,16 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">Accounts</ui:define>
 	<ui:define name="content">
+		<p:messages autoUpdate="true"/>
+		
+		<p:button outcome="newPerson" value="New Person" icon="fa fa-fw fa-plus">
+		</p:button>
+		
 		<p:dataTable var="account" value="#{accountsBean.accounts}">
 			<p:column headerText="Login">
-				<a href="account.xhtml?id=#{account.id}">
-					<p:outputLabel value="#{account.login}"/>
-				</a>
+				<h:outputLink value="account.xhtml?id=#{account.id}">
+					#{account.login}
+				</h:outputLink>	
 			</p:column>
 			<p:column headerText="Name">
 				<p:outputLabel value="#{account.name}"/>
@@ -28,6 +33,9 @@
 				<p:outputLabel value="#{account}">
 					<f:converter converterId="accountTypeConverter"/>
 				</p:outputLabel>
+			</p:column>
+			<p:column headerText="Delete">
+				TODO add button
 			</p:column>
 		</p:dataTable>
 	</ui:define>

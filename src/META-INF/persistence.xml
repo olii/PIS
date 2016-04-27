@@ -2,11 +2,12 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="pis">
 		<jta-data-source>jdbc/mysql</jta-data-source>
-		<class>pis.data.Project</class>
+		<class>pis.data.Admin</class>
 		<class>pis.data.Person</class>
-		<class>pis.data.Team</class>
-		<class>pis.data.Subject</class>
+		<class>pis.data.Project</class>
 		<class>pis.data.Student</class>
+		<class>pis.data.Subject</class>
 		<class>pis.data.Teacher</class>
+		<class>pis.data.Team</class>
 	</persistence-unit>
 </persistence>

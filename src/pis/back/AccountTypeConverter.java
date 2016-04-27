@@ -7,7 +7,7 @@ import javax.faces.convert.FacesConverter;
 
 import pis.data.Person;
 
-@FacesConverter("accountTypeConverter")
+@FacesConverter(value="accountTypeConverter")
 public class AccountTypeConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent ui, String string) {
