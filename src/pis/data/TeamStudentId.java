@@ -11,7 +11,7 @@ public class TeamStudentId implements Serializable {
 		return team;
 	}
 
-	public void setTeamId(int team) {
+	public void setTeam(int team) {
 		this.team = team;
 	}
 
