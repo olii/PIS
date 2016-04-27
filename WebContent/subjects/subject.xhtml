@@ -10,6 +10,10 @@
 	<ui:define name="title">#{subjectBean.getTitle()}</ui:define>
 	<ui:define name="content">
 		<h3>Projects</h3>
+		<p:messages autoUpdate="true"/>	
+		<p:button outcome="newproject?id=#{subjectBean.subject.id}" value="New Project" icon="fa fa-fw fa-plus">
+		</p:button>
+		
 		<p:dataTable var="project" value="#{subjectBean.projects}">
 			<p:column headerText="Name">
 				<a href="project.xhtml?id=#{project.id}"><h:outputText value="#{project.name}"/></a>

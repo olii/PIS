@@ -40,7 +40,6 @@ public class SubjectBean {
 	@PostConstruct
 	public void init() {
 		Map<String, String> getParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-		
 		int subjectId = Integer.parseInt(getParams.get("id"));
 		Subject subject = subjectMgr.findById(subjectId);
 		if (subject == null) {
