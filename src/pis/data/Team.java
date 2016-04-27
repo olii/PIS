@@ -6,12 +6,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import static javax.persistence.GenerationType.IDENTITY;
 import static javax.persistence.FetchType.EAGER;
-import javax.persistence.JoinTable;
 
 @Entity
 @Table(name = "team")
@@ -23,12 +22,11 @@ public class Team {
 	private int capacity;
 	@ManyToOne(fetch = EAGER)
 	private Project project;
-	@ManyToMany(fetch = EAGER)
-	@JoinTable(name = "team_student")
-	private List<Student> members;
+	@OneToMany(mappedBy = "team", fetch = EAGER)
+	private List<TeamStudent> members;
 	
 	public Team() {
-		members = new ArrayList<Student>();
+		members = new ArrayList<TeamStudent>();
 	}
 
 	public int getId() {
@@ -47,11 +45,11 @@ public class Team {
 		this.name = name;
 	}
 
-	public List<Student> getMembers() {
+	public List<TeamStudent> getMembers() {
 		return members;
 	}
 	
-	public void setMembers(List<Student> members) {
+	public void setMembers(List<TeamStudent> members) {
 		this.members = members;
 	}
 	

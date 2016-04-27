@@ -12,9 +12,11 @@ import javax.faces.context.FacesContext;
 import pis.data.Project;
 import pis.data.Student;
 import pis.data.Team;
+import pis.data.TeamStudent;
 import pis.service.PersonManager;
 import pis.service.ProjectManager;
 import pis.service.TeamManager;
+import pis.service.TeamStudentManager;
 
 @ManagedBean
 @ViewScoped
@@ -25,6 +27,8 @@ public class NewTeamBean {
 	private ProjectManager projectMgr;
 	@EJB
 	private PersonManager personMgr;
+	@EJB
+	private TeamStudentManager teamStudentMgr;
 	private Project project;
 	private String teamName;
 
@@ -73,11 +77,18 @@ public class NewTeamBean {
 		team.setName(teamName);
 		team.setProject(project);
 		team.setCapacity(project.getTeamSize());
-		team.getMembers().add(account);
-		
 		team = teamMgr.save(team);
+		
+		TeamStudent teamMember = new TeamStudent();
+		teamMember.setTeam(team);
+		teamMember.setStudent(account);
+		teamMember = teamStudentMgr.save(teamMember);
+
+		team.getMembers().add(teamMember);
+		team = teamMgr.save(team);
+		
 		project.getTeams().add(team);
-		account.getTeams().add(team);
+		account.getTeams().add(teamMember);
 		projectMgr.save(project);
 		personMgr.save(account);
 		return "/common/project.xhtml?id=" + project.getId() + "&faces-redirect=true";

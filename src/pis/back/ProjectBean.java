@@ -16,9 +16,11 @@ import pis.data.Student;
 import pis.data.Subject;
 import pis.data.Teacher;
 import pis.data.Team;
+import pis.data.TeamStudent;
 import pis.service.PersonManager;
 import pis.service.ProjectManager;
 import pis.service.TeamManager;
+import pis.service.TeamStudentManager;
 
 @ManagedBean
 @ViewScoped
@@ -29,6 +31,8 @@ public class ProjectBean {
 	private TeamManager teamMgr;
 	@EJB
 	private PersonManager personMgr;
+	@EJB
+	private TeamStudentManager teamStudentMgr;
 	private Project project;
 	private List<Team> teams;
 	
@@ -72,8 +76,8 @@ public class ProjectBean {
 	}
 	
 	public boolean teamContainsMember(Team team, Person account) {
-		for (Person member : team.getMembers()) {
-			if (member.getId() == account.getId())
+		for (TeamStudent teamMember : team.getMembers()) {
+			if (teamMember.getStudent().getId() == account.getId())
 				return true;
 		}
 		return false;
@@ -84,10 +88,13 @@ public class ProjectBean {
 	}
 	
 	public void leaveTeam(int teamId, Student account) {
+		TeamStudent teamMember = teamStudentMgr.findByIds(teamId, account.getId());
 		Team team = teamMgr.findById(teamId);
-		team.getMembers().removeIf(member -> member.getId() == account.getId());
-		account.getTeams().removeIf(t -> t.getId() == team.getId());
 
+		team.getMembers().removeIf(member -> member.getStudent().getId() == account.getId());
+		account.getTeams().removeIf(t -> t.getTeam().getId() == team.getId());
+
+		teamStudentMgr.remove(teamMember);
 		teamMgr.save(team);
 		personMgr.save(account);
 		
@@ -102,8 +109,13 @@ public class ProjectBean {
 		}
 		
 		Team team = teamMgr.findById(teamId);
-		team.getMembers().add(account);
-		account.getTeams().add(team);
+		
+		TeamStudent teamMember = new TeamStudent();
+		teamMember.setTeam(team);
+		teamMember.setStudent(account);
+		
+		team.getMembers().add(teamMember);
+		account.getTeams().add(teamMember);
 
 		teamMgr.save(team);
 		personMgr.save(account);
@@ -125,8 +137,8 @@ public class ProjectBean {
 		if (!(account instanceof Student))
 			return false;
 		
-		for (Team team : ((Student)account).getTeams()) {
-			if (team.getProject().getId() == project.getId())
+		for (TeamStudent teamMember : ((Student)account).getTeams()) {
+			if (teamMember.getTeam().getProject().getId() == project.getId())
 				return true;
 		}
 		
@@ -159,7 +171,7 @@ public class ProjectBean {
 				continue;
 			
 			Student student = (Student)account;
-			student.getTeams().removeIf(t -> t.getId() == team.getId());
+			student.getTeams().removeIf(t -> t.getTeam().getId() == team.getId());
 			personMgr.save(student);
 		}
 		

@@ -28,9 +28,9 @@ INSERT INTO team (name, capacity, project_id) VALUES
 ("Team Forsen", 1, 1),
 ("Team Reckful", 1, 2),
 ("Team Mitch", 1, 4);
-INSERT INTO team_student (teams_id, members_id) VALUES
-(1, 3),
-(2, 3);
+INSERT INTO team_student (team_id, student_id, points) VALUES
+(1, 3, 10),
+(2, 3, 20);
 INSERT INTO subject_student (enrolled_id, students_id) VALUES
 (1, 3),
 (2, 3),

@@ -9,5 +9,6 @@
 		<class>pis.data.Subject</class>
 		<class>pis.data.Teacher</class>
 		<class>pis.data.Team</class>
+		<class>pis.data.TeamStudent</class>
 	</persistence-unit>
 </persistence>

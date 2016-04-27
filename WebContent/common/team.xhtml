@@ -14,11 +14,14 @@
 				<h:outputText value="#{rowIndex + 1}"/>
 			</p:column>
 			<p:column headerText="Name">
-				<h:outputText value="#{member.name} #{member.surname}"/>
+				<h:outputText value="#{member.student.name} #{member.student.surname}"/>
+			</p:column>
+			<p:column headerText="Points">
+				<h:outputText value="#{member.points}"/>
 			</p:column>
 			<p:column headerText="Action" rendered="#{teamBean.canManage(authBean.account)}">
 				<p:commandButton value="Remove Member" icon="fa fa-fw fa-close" update=":member-list"
-					actionListener="#{teamBean.removeMember(member)}"/>
+					actionListener="#{teamBean.removeMember(member.student)}"/>
 			</p:column>
 		</p:dataTable>
 	</ui:define>

@@ -10,12 +10,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import pis.data.Person;
-import pis.data.Student;
 import pis.data.Subject;
 import pis.data.Teacher;
 import pis.data.Team;
+import pis.data.TeamStudent;
 import pis.service.PersonManager;
 import pis.service.TeamManager;
+import pis.service.TeamStudentManager;
 
 @ManagedBean
 @ViewScoped
@@ -24,8 +25,10 @@ public class TeamBean {
 	private TeamManager teamMgr;
 	@EJB
 	private PersonManager personMgr;
+	@EJB
+	private TeamStudentManager teamStudentMgr;
 	private Team team;
-	private List<Student> members;
+	private List<TeamStudent> members;
 	
 	public Team getTeam() {
 		return team;
@@ -35,11 +38,11 @@ public class TeamBean {
 		this.team = team;
 	}
 
-	public List<Student> getMembers() {
+	public List<TeamStudent> getMembers() {
 		return members;
 	}
 
-	public void setMembers(List<Student> members) {
+	public void setMembers(List<TeamStudent> members) {
 		this.members = members;
 	}
 	
@@ -83,12 +86,13 @@ public class TeamBean {
 		return false;
 	}
 	
-	public void removeMember(Student account) {
-		team.getMembers().removeIf(s -> s.getId() == account.getId());
-		account.getTeams().removeIf(t -> t.getId() == team.getId());
-		
+	public void removeMember(TeamStudent teamMember) {
+		teamMember.getTeam().getMembers().removeIf(s -> s.getStudent().getId() == teamMember.getStudent().getId());
+		teamMember.getStudent().getTeams().removeIf(t -> t.getTeam().getId() == team.getId());
+
+		teamStudentMgr.remove(teamMember);
 		teamMgr.save(team);
-		personMgr.save(account);
+		personMgr.save(teamMember.getStudent());
 		
 		init(team.getId());
 	}

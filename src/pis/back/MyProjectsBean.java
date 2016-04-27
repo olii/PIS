@@ -13,6 +13,7 @@ import pis.data.Project;
 import pis.data.Student;
 import pis.data.Subject;
 import pis.data.Team;
+import pis.data.TeamStudent;
 
 @ManagedBean
 @ViewScoped
@@ -45,8 +46,8 @@ public class MyProjectsBean {
 	
 	public boolean hasTeam(Project project, Student account) {
 		for (Team team : project.getTeams()) {
-			for (Student member : team.getMembers()) {
-				if (member.getId() == account.getId())
+			for (TeamStudent teamMember : team.getMembers()) {
+				if (teamMember.getStudent().getId() == account.getId())
 					return true;
 			}
 		}
@@ -56,8 +57,8 @@ public class MyProjectsBean {
 	
 	public String getTeamName(Project project, Student account) {
 		for (Team team : project.getTeams()) {
-			for (Student member : team.getMembers()) {
-				if (member.getId() == account.getId())
+			for (TeamStudent teamMember : team.getMembers()) {
+				if (teamMember.getStudent().getId() == account.getId())
 					return team.getName();
 			}
 		}
@@ -67,8 +68,8 @@ public class MyProjectsBean {
 	
 	public int getTeamId(Project project, Student account) {
 		for (Team team : project.getTeams()) {
-			for (Student member : team.getMembers()) {
-				if (member.getId() == account.getId())
+			for (TeamStudent teamMember : team.getMembers()) {
+				if (teamMember.getStudent().getId() == account.getId())
 					return team.getId();
 			}
 		}
