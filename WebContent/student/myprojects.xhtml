@@ -11,18 +11,18 @@
 	<ui:define name="content">
 		<p:dataTable var="project" value="#{myProjectsBean.projects}">
 			<p:column headerText="Subject">
-				<a href="subject.xhtml?id=#{project.subject.id}">
+				<a href="/common/subject.xhtml?id=#{project.subject.id}">
 					<h:outputText value="#{project.subject.name}"/>
 				</a>
 			</p:column>
 			<p:column headerText="Project">
-				<a href="project.xhtml?id=#{project.id}">
+				<a href="/common/project.xhtml?id=#{project.id}">
 					<h:outputText value="#{project.name}"/>
 				</a>
 			</p:column>
 			<p:column headerText="Team">
 				<h:outputLabel rendered="#{myProjectsBean.hasTeam(project, authBean.account)}">
-					<a href="team.xhtml?id=#{myProjectsBean.getTeamId(project, authBean.account)}">
+					<a href="/common/team.xhtml?id=#{myProjectsBean.getTeamId(project, authBean.account)}">
 						<h:outputText value="#{myProjectsBean.getTeamName(project, authBean.account)}"/>
 					</a>
 				</h:outputLabel>

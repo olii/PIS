@@ -11,7 +11,40 @@
   <filter-mapping>
   	<filter-name>AuthFilter</filter-name>
   	<url-pattern>/index.xhtml</url-pattern>
-  	<url-pattern>/subjects/*</url-pattern>
+  	<url-pattern>/common/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  	<dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  <filter>
+  	<filter-name>AdminAuthFilter</filter-name>
+  	<filter-class>pis.back.AdminAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>AdminAuthFilter</filter-name>
+  	<url-pattern>/admin/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  	<dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+  <filter>
+  	<filter-name>StudentAuthFilter</filter-name>
+  	<filter-class>pis.back.StudentAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>StudentAuthFilter</filter-name>
+  	<url-pattern>/student/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+  	<dispatcher>INCLUDE</dispatcher>
+  </filter-mapping>
+    <filter>
+  	<filter-name>TeacherAuthFilter</filter-name>
+  	<filter-class>pis.back.TeacherAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>TeacherAuthFilter</filter-name>
+  	<url-pattern>/teacher/*</url-pattern>
   	<dispatcher>REQUEST</dispatcher>
   	<dispatcher>FORWARD</dispatcher>
   	<dispatcher>INCLUDE</dispatcher>

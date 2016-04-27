@@ -18,12 +18,12 @@
 		<h:form rendered="#{authBean.loggedIn}">
 			<p:menubar>
 				<p:menuitem value="Home" url="/index.xhtml" icon="fa fa-fw fa-home"/>
-				<p:menuitem value="Subjects" url="/subjects/" icon="fa fa-fw fa-folder-open"/>
-				<p:menuitem value="My Projects" url="/subjects/myprojects.xhtml" icon="fa fa-fw fa-mortar-board"
+				<p:menuitem value="Subjects" url="/common/" icon="fa fa-fw fa-folder-open"/>
+				<p:menuitem value="My Projects" url="/student/myprojects.xhtml" icon="fa fa-fw fa-mortar-board"
 					rendered="#{authBean.account.student}"/>
-				<p:menuitem value="Accounts" url="/subjects/accounts.xhtml" icon="fa fa-fw fa-group"
+				<p:menuitem value="Accounts" url="/admin/accounts.xhtml" icon="fa fa-fw fa-group"
 					rendered="#{authBean.account.admin}"/>
-				<p:menuitem style="position: absolute; right: 94px;" url="/subjects/profile.xhtml" value="Profile"
+				<p:menuitem style="position: absolute; right: 94px;" url="/common/profile.xhtml" value="Profile"
 					icon="fa fa-fw fa-user"/>
 				<p:menuitem style="position: absolute; right: 4px;" action="#{authBean.performLogout}" value="Logout"
 					icon="fa fa-fw fa-power-off"/>

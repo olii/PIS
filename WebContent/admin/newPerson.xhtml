@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="title">#{newPersonBean.getTitle()}</ui:define>
+	<ui:define name="content">
+		<p:messages autoUpdate="true"/>
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Login: "/>
+				<p:inputText name="login" value="#{newPersonBean.login}"/>
+				<p:outputLabel value="Name: "/>
+				<p:inputText name="name" value="#{newPersonBean.name}"/>
+				<p:outputLabel value="Surname: "/>
+				<p:inputText name="surname" value="#{newPersonBean.surname}"/>
+				<p:outputLabel value="Mail: "/>
+				<p:inputText name="mail" value="#{newPersonBean.email}" type="email"/>
+				<p:outputLabel value="Password:" />
+				<p:inputText name="password" value="#{newPersonBean.password}"/>
+				<p:outputLabel value="Type:" />
+		        <p:selectOneRadio value="#{newPersonBean.type}">
+		            <f:selectItem itemLabel="Administrator" itemValue="admin" />
+		            <f:selectItem itemLabel="Teacher" itemValue="teacher" />
+		            <f:selectItem itemLabel="Student" itemValue="student" />
+		        </p:selectOneRadio>
+				
+				<p:commandButton value="Save" ui-icon-check="fa fa-fw fa-check"	action="#{newPersonBean.create(authBean.account)}"/>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

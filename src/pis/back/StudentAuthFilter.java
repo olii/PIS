@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AuthFilter implements Filter {
+public class StudentAuthFilter implements Filter {
 	@Override
-	public void destroy() {	
+	public void destroy() {
 	}
 
 	@Override
@@ -22,13 +22,13 @@ public class AuthFilter implements Filter {
 		HttpServletRequest httpReq = (HttpServletRequest)req;
 		HttpSession session = httpReq.getSession();
 		AuthBean authBean = (AuthBean)session.getAttribute("authBean");
- 
-		if (authBean != null && authBean.isLoggedIn()) {
+
+		if (authBean != null && authBean.isLoggedIn() && authBean.getAccount().isStudent()) {
 			chain.doFilter(req, resp);
 			return;
 		}
-
-		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + "/login.xhtml");
+		
+		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + (authBean.isLoggedIn() ? "/index.xhtml" : "/login.xhtml"));
 	}
 
 	@Override

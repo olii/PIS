@@ -3,6 +3,7 @@ package pis.back;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -26,43 +27,36 @@ public class NewProjectBean {
 	private String name;
 	private int capacity;
 	private int teamSize;
-	private Date deadline;	
+	private Date deadline;
+	
+	@PostConstruct
+	public void init() {
+		name = "";
+		capacity = 1;
+		teamSize = 1;
+		deadline = new Date();
+		deadline.setTime(deadline.getTime() + (1000 * 60 * 60 * 24)); // tomorrow
+	}
 	
 	public String getTitle() {
 		return "New Project";
 	}
 		
-	public String create(Person account, Subject subject) {	
-		System.out.println(account);
-		System.out.println(subject);
-		
+	public String create(Person account, Subject subject) {		
 		if (name.equals("")){
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Enter a Project name", ""));
 			return "errror";
 		}
-		if (capacity == 0){
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Capacity is 0", ""));
-			return "errror";
-		}
-		if (capacity > 5000){
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Capacity is greater  than 5000", ""));
-			return "errror";
-		}
-		if (teamSize == 0){
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Team size cannot be 0", ""));
-			return "errror";
-		}
+
 		if (deadline == null){
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Set the Deadline to be correct", ""));
 			return "errror";
 		}
-		Date d = new Date();
-		if (deadline.before(d)){
+
+		Date today = new Date();
+		if (deadline.before(today)){
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Set the Deadline to be correct", ""));
 			return "errror";
@@ -80,6 +74,7 @@ public class NewProjectBean {
 		
 		Project p = new Project();
 		p.setCapacity(capacity);
+		p.setTeamSize(teamSize);
 		p.setDeadline(deadline);
 		p.setName(name);
 		p.setSubject(subject);
@@ -89,7 +84,7 @@ public class NewProjectBean {
 		subject.setProjects(projects);
 		subjectMng.save(subject);
 		
-		return "subject.xhtml?id=" + subject.getId() + "&faces-redirect=true";
+		return "/common/subject.xhtml?id=" + subject.getId() + "&faces-redirect=true";
 		
 	}
 

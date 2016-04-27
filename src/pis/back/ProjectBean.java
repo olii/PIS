@@ -118,7 +118,7 @@ public class ProjectBean {
 			return "error";
 		}
 
-		return "/subjects/newteam.xhtml?project=" + project.getId() + "&faces-redirect=true";
+		return "/student/newteam.xhtml?project=" + project.getId() + "&faces-redirect=true";
 	}
 	
 	public boolean alreadyHasTeam(Person account) {

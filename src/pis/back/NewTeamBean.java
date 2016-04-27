@@ -80,6 +80,6 @@ public class NewTeamBean {
 		account.getTeams().add(team);
 		projectMgr.save(project);
 		personMgr.save(account);
-		return "/subjects/project.xhtml?id=" + project.getId() + "&faces-redirect=true";
+		return "/common/project.xhtml?id=" + project.getId() + "&faces-redirect=true";
 	}
 }

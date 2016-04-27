@@ -15,9 +15,9 @@
 				<p:outputLabel value="Name: "/>
 				<p:inputText name="name" value="#{newProjectBean.name}"/>
 				<p:outputLabel value="Capacity:"/>
-				<p:inputMask mask="9?999999" value="#{newProjectBean.capacity}"/>
+				<p:spinner min="1" max="999999" value="#{newProjectBean.capacity}"/>
 				<p:outputLabel value="Team size"/>
-				<p:inputMask mask="9?999999" value="#{newProjectBean.teamSize}"/>
+				<p:spinner min="1" max="25" value="#{newProjectBean.teamSize}"/>
 				<p:outputLabel value="Deadline"/>
 				<p:calendar id="datetime" value="#{newProjectBean.deadline}" pattern="dd-MM-yyyy HH:mm:ss" />
 				
