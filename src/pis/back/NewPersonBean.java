@@ -1,8 +1,5 @@
 package pis.back;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -12,7 +9,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 import pis.data.Person;
-import pis.data.Project;
 import pis.data.Student;
 import pis.data.Teacher;
 import pis.data.Admin;
