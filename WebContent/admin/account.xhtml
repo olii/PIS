@@ -23,7 +23,12 @@
 						<p:outputLabel value="Mail: "/>
 						<p:inputText name="mail" value="#{accountBean.mail}"/>
 					</h:panelGrid>
-					<p:commandButton action="#{accountBean.saveAccount}" value="Save" icon="fa fa-fw fa-save"/>
+					<p:outputLabel value="Teached Subjects" rendered="#{accountBean.account.teacher}" styleClass="bottom-margin"/>
+					<p:outputLabel value="Enrolled Subjects" rendered="#{accountBean.account.student}" styleClass="bottom-margin"/>
+					<p:pickList value="#{accountBean.subjects}" var="subject" itemLabel="#{subject.name}" itemValue="#{subject}"
+						converter="subjectConverter" rendered="#{accountBean.hasSubjects()}"/>
+					<p:commandButton action="#{accountBean.saveAccount}" value="Save" icon="fa fa-fw fa-save"
+						styleClass="top-margin"/>
 				</h:form>
 			</div>
 		</p:panel>

@@ -29,3 +29,12 @@ form table tr td:first-child {
 .bottom-margin {
 	margin-bottom: 10px;
 }
+
+.ui-picklist {
+	margin: 0 auto;
+}
+
+.ui-picklist .ui-picklist-list {
+	width: 310px;
+	text-align: left;
+}

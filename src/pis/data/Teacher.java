@@ -17,7 +17,7 @@ public class Teacher extends Person {
 		return this.teachedSubjects;
 	}
 
-	public void setEnrolled(List<Subject> teachedSubjects) {
+	public void setTeachedSubjects(List<Subject> teachedSubjects) {
 		this.teachedSubjects = teachedSubjects;
 	}
 	

@@ -18,10 +18,26 @@ public class SubjectManager {
 		em.merge(subject);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Subject> findAll() {
+		return em.createQuery("SELECT s FROM Subject s").getResultList();
+	}
+	
 	public Subject findById(int id) {
 		try {
 			return (Subject)em.createQuery("SELECT s FROM Subject s WHERE s.id = :id")
 				.setParameter("id", id)
+				.getSingleResult();
+		}
+		catch (NoResultException ex) {
+			return null;
+		}
+	}
+	
+	public Subject findByName(String name) {
+		try {
+			return (Subject)em.createQuery("SELECT s FROM Subject s WHERE s.name = :name")
+				.setParameter("name", name)
 				.getSingleResult();
 		}
 		catch (NoResultException ex) {
