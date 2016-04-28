@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -95,5 +96,14 @@ public class TeamBean {
 		teamStudentMgr.remove(teamMember);
 		
 		init(team.getId());
+	}
+	
+	public void updatePoints(Person account){
+		for(TeamStudent member : members){
+			teamStudentMgr.save(member);
+		}
+		
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Points updated", ""));
 	}
 }

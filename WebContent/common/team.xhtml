@@ -9,21 +9,30 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">#{teamBean.getTitle()}</ui:define>
 	<ui:define name="content">
-		<p:dataTable id="member-list" var="member" value="#{teamBean.members}">
-			<p:column headerText="#">
-				<h:outputText value="#{rowIndex + 1}"/>
-			</p:column>
-			<p:column headerText="Name">
-				<h:outputText value="#{member.student.name} #{member.student.surname}"/>
-			</p:column>
-			<p:column headerText="Points">
-				<h:outputText value="#{member.points}"/>
-			</p:column>
-			<p:column headerText="Action" rendered="#{teamBean.canManage(authBean.account)}">
-				<p:commandButton value="Remove Member" icon="fa fa-fw fa-close" update=":member-list"
-					actionListener="#{teamBean.removeMember(member)}"/>
-			</p:column>
-		</p:dataTable>
+		<h:form id="form">
+			<p:messages autoUpdate="true"/>
+			<p:dataTable id="member-list" var="member" value="#{teamBean.members}">
+				<p:column headerText="#" style="width:50px;">
+					<h:outputText value="#{rowIndex + 1}"/>
+				</p:column>
+				<p:column headerText="Name">
+					<h:outputText value="#{member.student.name} #{member.student.surname}" 
+						rendered="#{(authBean.account.id != member.student.id)}"/>
+					<h:outputText value="#{member.student.name} #{member.student.surname}" style="font-weight:bold"
+						rendered="#{(authBean.account.id == member.student.id)}" />
+				</p:column>
+				<p:column headerText="Points">
+					<h:outputText value="#{member.points}" rendered="#{authBean.account.isStudent()}"/>
+					<p:spinner min="0" max="100" value="#{member.points}"  rendered="#{authBean.account.isTeacher()}"/>
+				</p:column>
+				<p:column headerText="Action" rendered="#{teamBean.canManage(authBean.account)}">
+					<p:commandButton value="Remove Member" icon="fa fa-fw fa-close" update="form:member-list"
+						actionListener="#{teamBean.removeMember(member)}"/>
+				</p:column>
+			</p:dataTable>
+			<p:commandButton value="Save Points" ui-icon-check="fa fa-fw fa-check"
+							action="#{teamBean.updatePoints(authBean.account)}"/>
+		</h:form>	
 	</ui:define>
 </ui:composition>
 </html>
