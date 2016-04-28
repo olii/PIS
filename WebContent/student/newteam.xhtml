@@ -13,10 +13,10 @@
 			<p:messages autoUpdate="true"/>
 			<div class="text-center">
 				<h:form>
-					<p:panelGrid columns="2" styleClass="bottom-margin">
+					<h:panelGrid columns="2" styleClass="bottom-margin">
 						<p:outputLabel value="Name: "/>
 						<p:inputText value="#{newTeamBean.teamName}"/>
-					</p:panelGrid>
+					</h:panelGrid>
 					<p:commandButton value="Save" icon="fa fa-fw fa-save"
 						action="#{newTeamBean.createTeam(authBean.account)}"/>
 				</h:form>
