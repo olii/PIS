@@ -27,8 +27,9 @@ public class StudentAuthFilter implements Filter {
 			chain.doFilter(req, resp);
 			return;
 		}
-		
-		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + (authBean.isLoggedIn() ? "/index.xhtml" : "/login.xhtml"));
+
+		boolean loggedIn = authBean != null && authBean.isLoggedIn();
+		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + (loggedIn ? "/index.xhtml" : "/login.xhtml"));
 	}
 
 	@Override

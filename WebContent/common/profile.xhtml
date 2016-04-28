@@ -9,19 +9,24 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">Profile</ui:define>
 	<ui:define name="content">
-		<h:form>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Name: "/>
-				<p:inputText readonly="true" value="#{profileBean.account.name}"/>
-				<p:outputLabel value="Surname: "/>
-				<p:inputText readonly="true" value="#{profileBean.account.surname}"/>
-				<p:outputLabel value="Mail: "/>
-				<p:inputText name="mail" value="#{profileBean.account.mail}"/>
-				<p:outputLabel value="New password: "/>
-				<p:password name="password" value="#{profileBean.newPassword}"/>
-				<p:commandButton action="#{profileBean.saveProfile}" value="Save" icon="fa fa-fw fa-save"/>
-			</h:panelGrid>
-		</h:form>
+		<p:panel>
+			<p:messages autoUpdate="true"/>
+			<div class="text-center">
+				<h:form>
+					<h:panelGrid columns="2" styleClass="bottom-margin">
+						<p:outputLabel value="Name: "/>
+						<p:inputText readonly="true" value="#{profileBean.account.name}"/>
+						<p:outputLabel value="Surname: "/>
+						<p:inputText readonly="true" value="#{profileBean.account.surname}"/>
+						<p:outputLabel value="Mail: "/>
+						<p:inputText name="mail" value="#{profileBean.account.mail}"/>
+						<p:outputLabel value="New password: "/>
+						<p:password name="password" value="#{profileBean.newPassword}"/>
+					</h:panelGrid>
+					<p:commandButton action="#{profileBean.saveProfile}" value="Save" icon="fa fa-fw fa-save"/>
+				</h:form>
+			</div>
+		</p:panel>
 	</ui:define>
 </ui:composition>
 </html>

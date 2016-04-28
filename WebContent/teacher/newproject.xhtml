@@ -9,21 +9,25 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">#{newProjectBean.getTitle()} for subject #{subjectBean.subject.name}</ui:define>
 	<ui:define name="content">
-		<p:messages autoUpdate="true"/>
-		<h:form>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Name: "/>
-				<p:inputText name="name" value="#{newProjectBean.name}"/>
-				<p:outputLabel value="Capacity:"/>
-				<p:spinner min="1" max="999999" value="#{newProjectBean.capacity}"/>
-				<p:outputLabel value="Team size"/>
-				<p:spinner min="1" max="25" value="#{newProjectBean.teamSize}"/>
-				<p:outputLabel value="Deadline"/>
-				<p:calendar id="datetime" value="#{newProjectBean.deadline}" pattern="dd-MM-yyyy HH:mm:ss" />
-				
-				<p:commandButton value="Save" ui-icon-check="fa fa-fw fa-check"	action="#{newProjectBean.create(authBean.account, subjectBean.subject)}"/>
-			</h:panelGrid>
-		</h:form>
+		<p:panel>
+			<p:messages autoUpdate="true"/>
+			<div class="text-center">
+				<h:form>
+					<h:panelGrid columns="2" styleClass="bottom-margin">
+						<p:outputLabel value="Name: "/>
+						<p:inputText name="name" value="#{newProjectBean.name}"/>
+						<p:outputLabel value="Capacity:"/>
+						<p:spinner min="1" max="999999" value="#{newProjectBean.capacity}"/>
+						<p:outputLabel value="Team size"/>
+						<p:spinner min="1" max="25" value="#{newProjectBean.teamSize}"/>
+						<p:outputLabel value="Deadline"/>
+						<p:calendar id="datetime" value="#{newProjectBean.deadline}" pattern="dd-MM-yyyy HH:mm:ss" />
+					</h:panelGrid>
+					<p:commandButton value="Save" ui-icon-check="fa fa-fw fa-check"
+							action="#{newProjectBean.create(authBean.account, subjectBean.subject)}"/>
+				</h:form>
+			</div>
+		</p:panel>
 	</ui:define>
 </ui:composition>
 </html>

@@ -9,16 +9,20 @@
 <ui:composition template="template.xhtml">
 	<ui:define name="title">Login</ui:define>
 	<ui:define name="content">
-		<p:messages autoUpdate="true"/>
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Login: "/>
-				<p:inputText value="#{authBean.login}"/>
-				<h:outputLabel value="Password: "/>
-				<p:password value="#{authBean.password}"/>
-				<p:commandButton action="#{authBean.performLogin}" value="Login" icon="fa fa-fw fa-check"/>
-			</h:panelGrid>
-		</h:form>
+		<p:panel>
+			<p:messages autoUpdate="true"/>
+			<div class="text-center">
+				<h:form>
+					<h:panelGrid columns="2" styleClass="bottom-margin">
+						<h:outputLabel value="Login: "/>
+						<p:inputText value="#{authBean.login}"/>
+						<h:outputLabel value="Password: "/>
+						<p:password value="#{authBean.password}"/>
+					</h:panelGrid>
+					<p:commandButton action="#{authBean.performLogin}" value="Login" icon="fa fa-fw fa-check"/>
+				</h:form>
+			</div>
+		</p:panel>
 	</ui:define>
 </ui:composition>
 </html>

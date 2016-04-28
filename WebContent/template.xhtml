@@ -8,11 +8,11 @@
 
 <h:head>
 	<title><ui:insert name="title"/></title>
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:outputStylesheet library="default" name="css/style.css" />
-	<div id="header">
-		<h2>PIS Project</h2>
+	<div class="text-center" id="header">
+		<h2 >PIS Project</h2>
 	</div>
 	<div id="menu">
 		<h:form rendered="#{authBean.loggedIn}">
@@ -37,7 +37,7 @@
 		<h2><ui:insert name="title"/></h2>
 		<ui:insert name="content"/>
 	</div>
-	<div id="footer">
+	<div id="footer" class="text-center">
 		<span>This project was created for course Advanced Information Systems at FIT BUT 2015/2016</span><br/>
 		<span>Vladimír Čillo, Marek Milkovič, Oliver Nemček</span>
 	</div>

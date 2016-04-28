@@ -28,7 +28,8 @@ public class TeacherAuthFilter implements Filter {
 			return;
 		}
 		
-		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + (authBean.isLoggedIn() ? "/index.xhtml" : "/login.xhtml"));
+		boolean loggedIn = authBean != null && authBean.isLoggedIn();
+		((HttpServletResponse)resp).sendRedirect(httpReq.getContextPath() + (loggedIn ? "/index.xhtml" : "/login.xhtml"));
 	}
 
 	@Override

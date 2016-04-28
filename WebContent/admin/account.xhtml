@@ -9,19 +9,24 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">Account - #{accountBean.account.login}</ui:define>
 	<ui:define name="content">
-		<h:form>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Login: "/>
-				<p:inputText name="login" value="#{accountBean.account.login}"/>
-				<p:outputLabel value="Name: "/>
-				<p:inputText name="name" value="#{accountBean.account.name}"/>
-				<p:outputLabel value="Surname: "/>
-				<p:inputText name="surname" value="#{accountBean.account.surname}"/>
-				<p:outputLabel value="Mail: "/>
-				<p:inputText name="mail" value="#{accountBean.account.mail}"/>
-				<p:commandButton action="#{accountBean.saveAccount}" value="Save" icon="fa fa-fw fa-save"/>
-			</h:panelGrid>
-		</h:form>
+		<p:panel>
+			<p:messages autoUpdate="true"/>
+			<div class="text-center">
+				<h:form>
+					<h:panelGrid columns="2" styleClass="bottom-margin">
+						<p:outputLabel value="Login: "/>
+						<p:inputText name="login" value="#{accountBean.account.login}"/>
+						<p:outputLabel value="Name: "/>
+						<p:inputText name="name" value="#{accountBean.account.name}"/>
+						<p:outputLabel value="Surname: "/>
+						<p:inputText name="surname" value="#{accountBean.account.surname}"/>
+						<p:outputLabel value="Mail: "/>
+						<p:inputText name="mail" value="#{accountBean.account.mail}"/>
+					</h:panelGrid>
+					<p:commandButton action="#{accountBean.saveAccount}" value="Save" icon="fa fa-fw fa-save"/>
+				</h:form>
+			</div>
+		</p:panel>
 	</ui:define>
 </ui:composition>
 </html>

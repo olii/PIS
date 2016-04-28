@@ -11,10 +11,9 @@
 	<ui:define name="content">
 		<p:messages autoUpdate="true"/>
 		
-		<p:button outcome="newPerson" value="New Person" icon="fa fa-fw fa-plus">
-		</p:button>
+		<p:button outcome="newPerson" value="New Person" icon="fa fa-fw fa-plus"/>
 		
-		<p:dataTable var="account" value="#{accountsBean.accounts}">
+		<p:dataTable styleClass="top-margin" var="account" value="#{accountsBean.accounts}">
 			<p:column headerText="Login">
 				<h:outputLink value="account.xhtml?id=#{account.id}">
 					#{account.login}

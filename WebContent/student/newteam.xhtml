@@ -9,12 +9,19 @@
 <ui:composition template="../template.xhtml">
 	<ui:define name="title">#{newTeamBean.getTitle()}</ui:define>
 	<ui:define name="content">
-		<p:messages autoUpdate="true"/>
-		<h:form>
-			<p:inputText value="#{newTeamBean.teamName}"/>
-			<p:commandButton value="Save" ui-icon-check="fa fa-fw fa-check"
-				action="#{newTeamBean.createTeam(authBean.account)}"/>
-		</h:form>
+		<p:panel>
+			<p:messages autoUpdate="true"/>
+			<div class="text-center">
+				<h:form>
+					<p:panelGrid columns="2" styleClass="bottom-margin">
+						<p:outputLabel value="Name: "/>
+						<p:inputText value="#{newTeamBean.teamName}"/>
+					</p:panelGrid>
+					<p:commandButton value="Save" icon="fa fa-fw fa-save"
+						action="#{newTeamBean.createTeam(authBean.account)}"/>
+				</h:form>
+			</div>
+		</p:panel>
 	</ui:define>
 </ui:composition>
 </html>

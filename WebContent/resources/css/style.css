@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-center {
+	text-align: center;
+}
+
+#content {
+	margin-bottom: 25px;   /* Height of the footer element */
+}
+
+form table {
+	margin: 0 auto;
+}
+
+form table tr td:first-child {
+	text-align: right;
+}
+
+#footer {
+	font-size: 80%;
+}
+
+.top-margin {
+	margin-top: 10px;
+}
+
+.bottom-margin {
+	margin-bottom: 10px;
+}
