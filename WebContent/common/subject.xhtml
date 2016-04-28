@@ -27,7 +27,9 @@
 			<p:column headerText="Team Size">
 				<h:outputText value="#{project.teamSize}"/>
 			</p:column>
-			
+			<p:column headerText="Deadline">
+				<h:outputText value="#{project.deadline}"/>
+			</p:column>
 			<p:column headerText="Action" rendered="#{ !(authBean.account.isStudent()) }">
 				<p:commandButton id="button-delete" update=":project-list" value="Delete" icon="fa fa-fw fa-close"
 					actionListener="#{subjectBean.deleteProject(project)}"/>
