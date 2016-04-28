@@ -19,6 +19,10 @@ public class ProjectManager {
 		return em.merge(project);
 	}
 	
+	public void remove(Project project) {
+		em.remove(em.merge(project));
+	}
+	
 	public Project findById(int id) {
 		try {
 			return (Project)em.createQuery("SELECT p FROM Project p WHERE p.id = :id")
