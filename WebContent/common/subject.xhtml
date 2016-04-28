@@ -13,7 +13,7 @@
 		<p:messages autoUpdate="true"/>	
 		<p:button outcome="/teacher/newproject.xhtml?id=#{subjectBean.subject.id}" value="New Project" rendered="#{!(authBean.account.isStudent())}" icon="fa fa-fw fa-plus">
 		</p:button>
-		<p:dataTable var="project" value="#{subjectBean.projects}">
+		<p:dataTable id="project-list" var="project" value="#{subjectBean.projects}">
 			<p:column headerText="Name">
 				<a href="project.xhtml?id=#{project.id}"><h:outputText value="#{project.name}"/></a>
 			</p:column>
@@ -26,6 +26,12 @@
 			<p:column headerText="Team Size">
 				<h:outputText value="#{project.teamSize}"/>
 			</p:column>
+			
+			<p:column headerText="Action" rendered="#{ !(authBean.account.isStudent()) }">
+				<p:commandButton id="button-delete" update=":project-list" value="Delete" icon="fa fa-fw fa-close"
+					actionListener="#{subjectBean.deleteProject(project)}"/>
+			</p:column>
+			
 		</p:dataTable>
 	</ui:define>
 </ui:composition>

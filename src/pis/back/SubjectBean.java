@@ -9,15 +9,28 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import pis.data.Person;
 import pis.data.Project;
+import pis.data.Student;
 import pis.data.Subject;
+import pis.data.Team;
+import pis.service.PersonManager;
+import pis.service.ProjectManager;
 import pis.service.SubjectManager;
+import pis.service.TeamManager;
 
 @ManagedBean
 @ViewScoped
 public class SubjectBean {
 	@EJB
 	private SubjectManager subjectMgr;
+	@EJB
+	private ProjectManager projectMgr;
+	@EJB
+	private PersonManager personMgr;
+	@EJB
+	private TeamManager teamMgr;
+	
 	private Subject subject;
 	private List<Project> projects;
 	
@@ -52,5 +65,9 @@ public class SubjectBean {
 	
 	public String getTitle() {
 		return subject.getName();
+	}
+	
+	public void deleteProject(Project p){
+		//todo
 	}
 }
