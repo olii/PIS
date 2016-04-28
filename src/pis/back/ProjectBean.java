@@ -1,5 +1,6 @@
 package pis.back;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -164,16 +165,16 @@ public class ProjectBean {
 	
 	public void removeTeam(int teamId) {
 		Team team = teamMgr.findById(teamId);
-		List<Person> accounts = personMgr.findAll();
+		List<TeamStudent> members = team.getMembers();
 		
-		for (Person account : accounts) {
-			if (!account.isStudent())
-				continue;
-			
-			Student student = (Student)account;
-			student.getTeams().removeIf(t -> t.getTeam().getId() == team.getId());
+		for (TeamStudent teamstudent : members) {
+			Student student = (Student)teamstudent.getStudent();
+			student.getTeams().remove(teamstudent);
+			teamStudentMgr.remove(teamstudent);
 			personMgr.save(student);
 		}
+		List<TeamStudent> empty = new ArrayList<TeamStudent>();
+		team.setMembers(empty);
 		
 		project.getTeams().removeIf(t -> t.getId() == team.getId());
 		projectMgr.save(project);
