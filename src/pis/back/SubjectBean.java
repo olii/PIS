@@ -1,5 +1,6 @@
 package pis.back;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,10 +15,12 @@ import pis.data.Project;
 import pis.data.Student;
 import pis.data.Subject;
 import pis.data.Team;
+import pis.data.TeamStudent;
 import pis.service.PersonManager;
 import pis.service.ProjectManager;
 import pis.service.SubjectManager;
 import pis.service.TeamManager;
+import pis.service.TeamStudentManager;
 
 @ManagedBean
 @ViewScoped
@@ -30,6 +33,8 @@ public class SubjectBean {
 	private PersonManager personMgr;
 	@EJB
 	private TeamManager teamMgr;
+	@EJB
+	private TeamStudentManager teamStudentMgr;
 	
 	private Subject subject;
 	private List<Project> projects;
@@ -68,6 +73,23 @@ public class SubjectBean {
 	}
 	
 	public void deleteProject(Project p){
-		//todo
+		System.out.println("Delete project id = " + p.getId());
+		for (Team team: p.getTeams()){
+			List<TeamStudent> members = team.getMembers();
+			
+			for (TeamStudent teamstudent : members) {
+				Student student = (Student)teamstudent.getStudent();
+				student.getTeams().remove(teamstudent);
+				teamStudentMgr.remove(teamstudent);
+				personMgr.save(student);
+			}
+			List<TeamStudent> empty = new ArrayList<TeamStudent>();
+			team.setMembers(empty);
+			teamMgr.remove(team);
+		}
+		projects.remove(p);
+		subject.getProjects().remove(p);
+		projectMgr.remove(p);
+		subjectMgr.save(subject);
 	}
 }
