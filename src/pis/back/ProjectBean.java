@@ -69,7 +69,6 @@ public class ProjectBean {
 
 		this.project = project;
 		this.teams = project.getTeams();
-		System.out.println(this.teams.size());
 	}
 	
 	public String getTitle() {

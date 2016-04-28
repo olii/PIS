@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import pis.data.Person;
 import pis.data.Project;
 import pis.data.Student;
 import pis.data.Subject;
@@ -73,7 +72,6 @@ public class SubjectBean {
 	}
 	
 	public void deleteProject(Project p){
-		System.out.println("Delete project id = " + p.getId());
 		for (Team team: p.getTeams()){
 			List<TeamStudent> members = team.getMembers();
 			
