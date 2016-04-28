@@ -90,9 +90,9 @@ public class TeamBean {
 		teamMember.getTeam().getMembers().removeIf(s -> s.getStudent().getId() == teamMember.getStudent().getId());
 		teamMember.getStudent().getTeams().removeIf(t -> t.getTeam().getId() == team.getId());
 
-		teamStudentMgr.remove(teamMember);
 		teamMgr.save(team);
 		personMgr.save(teamMember.getStudent());
+		teamStudentMgr.remove(teamMember);
 		
 		init(team.getId());
 	}
