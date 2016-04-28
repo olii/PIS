@@ -72,7 +72,6 @@ public class ProfileBean {
 		
 		if (isValidEmailAddress(email)){
 			account.setMail(email);
-			System.out.println("OK");
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid email address", ""));
