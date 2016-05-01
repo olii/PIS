@@ -110,6 +110,12 @@ public class ProjectBean {
 		
 		Team team = teamMgr.findById(teamId);
 		
+		if (team.getMembers().size() >= team.getCapacity()){
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "You cannot join this team. This team is full.", ""));
+			return;
+		}
+		
 		TeamStudent teamMember = new TeamStudent();
 		teamMember.setTeam(team);
 		teamMember.setStudent(account);
