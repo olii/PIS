@@ -25,10 +25,6 @@ public class Project {
 	private int capacity;
 	private int teamSize;
 	@Temporal(TemporalType.DATE)
-	private Date regBegin;
-	@Temporal(TemporalType.DATE)
-	private Date regEnd;
-	@Temporal(TemporalType.DATE)
 	private Date deadline;
 	@OneToMany(cascade = ALL, fetch = EAGER, mappedBy = "project", orphanRemoval = true)
 	private List<Team> teams;
@@ -49,22 +45,6 @@ public class Project {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Date getRegistrationBegin() {
-		return regBegin;
-	}
-
-	public void setRegistrationBegin(Date regBegin) {
-		this.regBegin = regBegin;
-	}
-
-	public Date getRegistrationEnd() {
-		return regEnd;
-	}
-
-	public void setRegistrationEnd(Date regEnd) {
-		this.regEnd = regEnd;
 	}
 
 	public int getCapacity() {
